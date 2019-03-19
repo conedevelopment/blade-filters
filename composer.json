@@ -1,0 +1,40 @@
+{
+    "name": "thepinecode/blade-filters",
+    "description": "Use blade filters easily in your templates.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gergo D. Nagy",
+            "email": "hello@iamgergo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pine\\BladeFilters\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pine\\BladeFilters\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php" : "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench":"~3.5.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pine\\BladeFilters\\BladeFiltersServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable" : true
+}
