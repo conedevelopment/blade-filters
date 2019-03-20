@@ -45,7 +45,7 @@ class BladeFiltersCompiler extends BladeCompiler
             $filters = sprintf(
                 '\Illuminate\Support\Str::%s(%s%s)',
                 $expression[0],
-                $key == 0 ? rtrim(str_replace($matches[0], '', $value)) : $filters,
+                $key === 0 ? rtrim(str_replace($matches[0], '', $value)) : $filters,
                 isset($expression[1]) ? ",{$expression[1]}" : ''
             );
         }
