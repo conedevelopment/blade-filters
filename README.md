@@ -63,6 +63,15 @@ $currency = 'HUF'
 {{ '12.75' | currency:$currency }} // HUF 12.75
 ```
 
+***Built-in Laravel functionality***:
+```php
+{{ 'This is a title' | slug }} // this-is-a-title
+
+{{ 'This is a title' | title }} // This Is A Title
+
+{{ 'foo_bar' | studly }} // FooBar
+```
+
 ### Limitation
 
 Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{}}` and escaped – `{{{ }}}`.
@@ -92,7 +101,9 @@ The package comes with a few built-in filters, also the default Laravel string m
 #### Date
 
 ```php
-{{ '1999-12-31' | date:'F j, Y' }} // December 31, 1999
+{{ '1999/12/31' | date }} // 1999-12-31
+
+{{ '1999/12/31' | date:'F j, Y' }} // December 31, 1999
 ```
 
 #### Lcfirst
@@ -133,7 +144,47 @@ The package comes with a few built-in filters, also the default Laravel string m
 
 ## Create custom filters
 
+As it was mentioned before, every filter is a method that can be called through the `Illuminate\Support\Facades\Str` facade.
+It has several reasons why is this approach better, but let's take the most important ones:
 
+- It's easy to define custom filters by extending the facade with the `Str::macro()`,
+- No extra files, autoloading or class mapping, it's enough to use any service provider to define filters,
+- By default Laravel provides a bunch of handy methods that we can use as filters.
+
+### Parameter ordering
+
+PHP is not very strict regarding to function's parameter ordering and this way it's easier to coordiante or override them.
+Also, sometimes it happens with Laravel's string functions. It's important that only those functions can be used, that accept the parameters in the following order:
+
+1. The value to be transformed
+2. Any other parameter if needed
+
+For example:
+
+```php
+Str::macro('filterName', function ($value, $param1 = 'default', $param2 = null) {
+    return ...;
+});
+
+{{ 'string' | filterName:1,2 }}
+```
+
+### Defining custom filters
+
+Since the filters are only methods that are defined in the `Str` facade, to create filters, you need to do to create a macro
+in a service provider's `boot()` method.
+
+```php
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        Str::macro('substr', function ($value, $start, $length = null) {
+            return mb_substr($value, $start, $length);
+        });
+    }
+}
+```
 
 ## Contact
 
