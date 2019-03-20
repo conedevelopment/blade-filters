@@ -33,19 +33,19 @@ Given a value and in the views the output can be modified via filters.
 
 You can use the filters in any of your blade templates.
 
-***Regular usage***:
+#### Regular usage:
 ```php
 {{ 'john' | ucfirst }} // John
 ```
 
-***Chained usage***:
+#### Chained usage:
 ```php
 {{ 'john' | ucfirst | substr:0,1 }} // J
 
 {{ '1999-12-31' | date:'Y/m/d' }} // 1999/12/31
 ```
 
-***Passing non-static values***:
+#### Passing non-static values:
 ```php
 {{ $name | ucfirst | substr:0,1 }}
 
@@ -56,14 +56,14 @@ You can use the filters in any of your blade templates.
 {{ getName() | ucfirst | substr:0,1 }}
 ```
 
-***Passing variables as filter parameters***:
+#### Passing variables as filter parameters:
 ```php
 $currency = 'HUF'
 
 {{ '12.75' | currency:$currency }} // HUF 12.75
 ```
 
-***Built-in Laravel functionality***:
+#### Built-in Laravel functionality:
 ```php
 {{ 'This is a title' | slug }} // this-is-a-title
 
@@ -75,7 +75,7 @@ $currency = 'HUF'
 ### Limitation
 
 Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{}}` and escaped (legacy) – `{{{ }}}`.
-Filters can be used ***only with regular*** echos. Also, filters ***cannot be used in blade directices directly**.
+Filters can be used **only with regular** echos. Also, filters **cannot be used in blade directices directly**.
 
 > Why? Raw should be as it is. Forced escaping should be escaped only, without modification.
 
