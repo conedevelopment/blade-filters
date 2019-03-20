@@ -49,7 +49,7 @@ You can use the filters in any of your blade templates.
 ```php
 {{ $name | ucfirst | substr:0,1 }}
 
-{{ $user['name] | ucfirst | substr:0,1 }}
+{{ $user['name'] | ucfirst | substr:0,1 }}
 
 {{ $currentUser->name | ucfirst | substr:0,1 }}
 
@@ -63,8 +63,10 @@ $currency = 'HUF'
 {{ '12.75' | currency:$currency }} // HUF 12.75
 ```
 
-***Important Note***: Laravel supports three types of echos. Raw (`{{{  }}}`), regular (`{{}}`) and escaped (`{!! !!}`).
-Filters can be used ***only with regular*** echos. Also, filters cannot be used in blade directices directly.
+### Limitation
+
+Laravel supports three types of echos. Raw (`{{{  }}}`), regular (`{{}}`) and escaped (`{!! !!}`).
+Filters can be used ***only with regular*** echos. Also, filters ***cannot be used in blade directices directly**.
 
 > Why? Raw should be as it is. Escaped should be escaped only, without modification.
 
