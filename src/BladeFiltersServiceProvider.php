@@ -17,7 +17,7 @@ class BladeFiltersServiceProvider extends ViewServiceProvider
     public function registerBladeEngine($resolver)
     {
         $this->app->singleton('blade.compiler', function () {
-            return new Compiler(
+            return new BladeFiltersCompiler(
                 $this->app['files'], $this->app['config']['view.compiled']
             );
         });
@@ -41,6 +41,11 @@ class BladeFiltersServiceProvider extends ViewServiceProvider
             return date($format, strtotime($value));
         });
 
+        // Currency
+        Str::macro('currency', function ($value, $currency = '$', $side = 'left') {
+            return $side === 'left' ? "{$currency} {$value}" : "{$value} {$currency}";
+        });
+
         // Trim
         Str::macro('trim', function ($value) {
             return trim($value);
@@ -48,7 +53,22 @@ class BladeFiltersServiceProvider extends ViewServiceProvider
 
         // Substr
         Str::macro('substr', function ($value, $start, $length = null) {
-            return substr($value, $start, $length);
+            return mb_substr($value, $start, $length);
+        });
+
+        // Ucfirst
+        Str::macro('ucfirst', function ($value) {
+            return mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+        });
+
+        // Lcfirst
+        Str::macro('lcfirst', function ($value) {
+            return mb_strtolower(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+        });
+
+        // Reverse
+        Str::macro('reverse', function ($value) {
+            return strrev($value);
         });
     }
 }

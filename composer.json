@@ -20,10 +20,10 @@
         }
     },
     "require": {
-        "php" : "^7.0"
+        "php" : "^7.1"
     },
     "require-dev": {
-        "orchestra/testbench":"~3.5.0"
+        "orchestra/testbench":"~3.8.0"
     },
     "extra": {
         "laravel": {

@@ -3,7 +3,7 @@
 Use string filters easily in Laravel Blade.
 
 If you have any question how the package works, we suggest to read this post:
-[Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
+[Laravel Blade Filters](https://pineco.de/laravel-blade-filters/).
 
 ## Getting started
 
@@ -28,7 +28,51 @@ Go to the `config/app.php` file and add the `Pine\BladeFilters\BladeFiltersServi
 
 ## Using the filters
 
+The basic concept is very similar what you can find in django or Symfony.
+Given a value and in the views the output can be modified via filters.
 
+You can use the filters in any of your blade templates.
+
+***Regular usage***:
+```php
+{{ 'john' | ucfirst }} // John
+```
+
+***Chained usage***:
+```php
+{{ 'john' | ucfirst | substr:0,1 }} // J
+
+{{ '1999-12-31' | date:'Y/m/d' }} // 1999/12/31
+```
+
+***Passing non-static values***:
+```php
+{{ $name | ucfirst | substr:0,1 }}
+
+{{ $user['name] | ucfirst | substr:0,1 }}
+
+{{ $currentUser->name | ucfirst | substr:0,1 }}
+
+{{ getName() | ucfirst | substr:0,1 }}
+```
+
+***Passing variables as filter parameters***:
+```php
+$currency = 'HUF'
+
+{{ '12.75' | currency:$currency }} // HUF 12.75
+```
+
+***Important Note***: Laravel supports three types of echos. Raw (`{{{  }}}`), regular (`{{}}`) and escaped (`{!! !!}`).
+Filters can be used ***only with regular*** echos. Also, filters cannot be used in blade directices directly.
+
+> Why? Raw should be as it is. Escaped should be escaped only, without modification.
+
+## The available filters
+
+Every filter is called from the `Illuminate\Support\Facades\Str` facade.
+
+## Create custom filters
 
 ## Contact
 

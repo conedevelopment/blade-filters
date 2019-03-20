@@ -4,7 +4,7 @@ namespace Pine\BladeFilters;
 
 use Illuminate\View\Compilers\BladeCompiler;
 
-class Compiler extends BladeCompiler
+class BladeFiltersCompiler extends BladeCompiler
 {
     /**
      * Compile the "regular" echo statements.
@@ -35,11 +35,11 @@ class Compiler extends BladeCompiler
      */
     protected function parseFilters($value)
     {
-        if (! preg_match('/(?=[^\'\"(].+?[\'\")])?(\|.*)/iu', $value, $matches)) {
+        if (! preg_match('/(?:[\'\"(].*[\'\")])?.?(\|.*)/iu', $value, $matches)) {
             return $value;
         }
 
-        $expressions = array_values(array_filter(array_map('trim', explode('|', $matches[0]))));
+        $expressions = array_values(array_filter(array_map('trim', explode('|', $matches[1]))));
 
         if (empty($expressions)) {
             return $value;
@@ -51,7 +51,7 @@ class Compiler extends BladeCompiler
             $filters = sprintf(
                 '\Illuminate\Support\Str::%s(%s%s)',
                 $expression[0],
-                $key == 0 ? rtrim(str_replace($matches[0], '', $value)) : $filters,
+                $key == 0 ? rtrim(str_replace($matches[1], '', $value)) : $filters,
                 isset($expression[1]) ? ",{$expression[1]}" : ''
             );
         }
