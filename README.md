@@ -28,9 +28,6 @@ Go to the `config/app.php` file and add the `Pine\BladeFilters\BladeFiltersServi
 
 ## Using the filters
 
-The basic concept is very similar what you can find in django or Symfony.
-Given a value and in the views the output can be modified via filters.
-
 You can use the filters in any of your blade templates.
 
 #### Regular usage:

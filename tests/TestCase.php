@@ -1,6 +1,6 @@
 <?php
 
-namespace Pine\BladeFilters\Test;
+namespace Pine\BladeFilters\Tests;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
@@ -9,14 +9,14 @@ use Pine\BladeFilters\BladeFiltersServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         View::addNamespace('blade-filters', __DIR__.'/views');
 
-        Route::get('blade-filters', function () {
-            return view('blade-filters::filters');
+        Route::get('/blade-filters/{filter}', function ($filter) {
+            return view("blade-filters::{$filter}");
         });
     }
 

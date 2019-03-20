@@ -14,17 +14,11 @@ class BladeFiltersCompiler extends BladeCompiler
      */
     protected function compileRegularEchos($value)
     {
-        $pattern = sprintf('/(@)?%s\s*(.+?)\s*%s(\r?\n)?/s', $this->contentTags[0], $this->contentTags[1]);
+        $value = parent::compileRegularEchos($value);
 
-        $callback = function ($matches) {
-            $whitespace = empty($matches[3]) ? '' : $matches[3].$matches[3];
-
-            $wrapped = sprintf($this->echoFormat, $this->parseFilters($matches[2]));
-
-            return $matches[1] ? substr($matches[0], 1) : "<?php echo {$wrapped}; ?>{$whitespace}";
-        };
-
-        return preg_replace_callback($pattern, $callback, $value);
+        return preg_replace_callback('/(?<=<\?php\secho e\()(.*)(?=\);\s\?>)/u', function ($matches) {
+            return $this->parseFilters($matches[0]);
+        }, $value);
     }
 
     /**
@@ -35,11 +29,11 @@ class BladeFiltersCompiler extends BladeCompiler
      */
     protected function parseFilters($value)
     {
-        if (! preg_match('/(?:[\'\"(].*[\'\")])?.?(\|.*)/iu', $value, $matches)) {
+        if (! preg_match('/(?![^\"\'(].*[\"\')])(\|.*)/u', $value, $matches)) {
             return $value;
         }
 
-        $expressions = array_values(array_filter(array_map('trim', explode('|', $matches[1]))));
+        $expressions = array_values(array_filter(array_map('trim', explode('|', $matches[0]))));
 
         if (empty($expressions)) {
             return $value;
@@ -51,7 +45,7 @@ class BladeFiltersCompiler extends BladeCompiler
             $filters = sprintf(
                 '\Illuminate\Support\Str::%s(%s%s)',
                 $expression[0],
-                $key == 0 ? rtrim(str_replace($matches[1], '', $value)) : $filters,
+                $key == 0 ? rtrim(str_replace($matches[0], '', $value)) : $filters,
                 isset($expression[1]) ? ",{$expression[1]}" : ''
             );
         }

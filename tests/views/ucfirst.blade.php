@@ -1,0 +1,1 @@
+{{ 'árpamaláta' | ucfirst }}

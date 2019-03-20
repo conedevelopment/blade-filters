@@ -1,0 +1,1 @@
+{{ 'KebabTest' | kebab }}
