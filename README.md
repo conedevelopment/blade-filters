@@ -65,16 +65,75 @@ $currency = 'HUF'
 
 ### Limitation
 
-Laravel supports three types of echos. Raw (`{{{  }}}`), regular (`{{}}`) and escaped (`{!! !!}`).
+Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{}}` and escaped – `{{{ }}}`.
 Filters can be used ***only with regular*** echos. Also, filters ***cannot be used in blade directices directly**.
 
 > Why? Raw should be as it is. Escaped should be escaped only, without modification.
 
-## The available filters
+## The Filters
 
-Every filter is called from the `Illuminate\Support\Facades\Str` facade.
+### About the filters
+
+Filters are string functions, that are defined in the `Illuminate\Support\Facades\Str` facade.
+It has several reasons, that are discussed in the [Create custom filters](#create-custom-filters) section.
+
+### The available filters
+
+The package comes with a few built-in filters, also the default Laravel string methods can be used.
+
+#### Currency
+
+```php
+{{ '17.99' | currency:'CHF' }} // CHF 17.99
+
+{{ '17.99' | currency:'€','right' }} // 17.99 €
+```
+
+#### Date
+
+```php
+{{ '1999-12-31' | date:'F j, Y' }} // December 31, 1999
+```
+
+#### Lcfirst
+
+```php
+{{ 'Árpamaláta' | lcfirst }} // árpamaláta
+```
+
+> Unlike PHP's default `lcfirst()`, this filter works with multi-byte strings as well.
+
+#### Reverse
+
+```php
+{{ 'ABCDEF' | reverse }} //FEDCBA
+```
+
+#### Substr
+
+```php
+{{ 'My name is' | substr:0,2 }} // My
+
+{{ 'My name is' | substr:3 }} // name is
+```
+
+#### Trim
+
+```php
+{{ '   trim me    ' | trim }} // trim me
+```
+
+#### Ucfirst
+
+```php
+{{ 'árpamaláta' | ucfirst }} // Árpamaláta
+```
+
+> Unlike PHP's default `ucfirst()`, this filter works with multi-byte strings as well.
 
 ## Create custom filters
+
+
 
 ## Contact
 

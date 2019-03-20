@@ -36,14 +36,14 @@ class BladeFiltersServiceProvider extends ViewServiceProvider
     {
         parent::register();
 
-        // Date
-        Str::macro('date', function ($value, $format = 'Y-m-d') {
-            return date($format, strtotime($value));
-        });
-
         // Currency
         Str::macro('currency', function ($value, $currency = '$', $side = 'left') {
             return $side === 'left' ? "{$currency} {$value}" : "{$value} {$currency}";
+        });
+
+        // Date
+        Str::macro('date', function ($value, $format = 'Y-m-d') {
+            return date($format, strtotime($value));
         });
 
         // Trim
