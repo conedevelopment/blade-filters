@@ -42,14 +42,14 @@ class BladeFiltersCompiler extends BladeCompiler
         foreach ($expressions as $key => $expression) {
             $expression = explode(':', trim($expression));
 
-            $filters = sprintf(
+            $wrapped = sprintf(
                 '\Illuminate\Support\Str::%s(%s%s)',
                 $expression[0],
-                $key === 0 ? rtrim(str_replace($matches[0], '', $value)) : $filters,
+                $key === 0 ? rtrim(str_replace($matches[0], '', $value)) : $wrapped,
                 isset($expression[1]) ? ",{$expression[1]}" : ''
             );
         }
 
-        return $filters;
+        return $wrapped;
     }
 }
