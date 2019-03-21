@@ -33,20 +33,20 @@ class BladeFiltersCompiler extends BladeCompiler
             return $value;
         }
 
-        $expressions = array_values(array_filter(array_map('trim', explode('|', $matches[0]))));
+        $filters = array_values(array_filter(array_map('trim', explode('|', $matches[0]))));
 
-        if (empty($expressions)) {
+        if (empty($filters)) {
             return $value;
         }
 
-        foreach ($expressions as $key => $expression) {
-            $expression = explode(':', trim($expression));
+        foreach ($filters as $key => $filter) {
+            $filter = explode(':', trim($filter));
 
             $wrapped = sprintf(
                 '\Illuminate\Support\Str::%s(%s%s)',
-                $expression[0],
+                $filter[0],
                 $key === 0 ? rtrim(str_replace($matches[0], '', $value)) : $wrapped,
-                isset($expression[1]) ? ",{$expression[1]}" : ''
+                isset($filter[1]) ? ",{$filter[1]}" : ''
             );
         }
 
