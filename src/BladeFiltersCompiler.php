@@ -16,7 +16,7 @@ class BladeFiltersCompiler extends BladeCompiler
     {
         $value = parent::compileRegularEchos($value);
 
-        return preg_replace_callback('/(?<=<\?php\secho e\()(.*)(?=\);\s\?>)/u', function ($matches) {
+        return preg_replace_callback('/(?<=<\?php\secho\se\()(.*)(?=\);\s\?>)/u', function ($matches) {
             return $this->parseFilters($matches[0]);
         }, $value);
     }
