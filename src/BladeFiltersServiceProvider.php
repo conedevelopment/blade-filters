@@ -28,14 +28,12 @@ class BladeFiltersServiceProvider extends ViewServiceProvider
     }
 
     /**
-     * Register any application services.
+     * Bootstrap any application services.
      *
      * @return void
      */
-    public function register()
+    public function boot()
     {
-        parent::register();
-
         // Currency
         Str::macro('currency', function ($value, $currency = '$', $side = 'left') {
             return $side === 'left' ? "{$currency} {$value}" : "{$value} {$currency}";

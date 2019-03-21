@@ -71,7 +71,7 @@ $currency = 'HUF'
 
 ### Limitation
 
-Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{}}` and escaped (legacy) – `{{{ }}}`.
+Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{ }}` and escaped (legacy) – `{{{ }}}`.
 Filters can be used **only with regular** echos. Also, filters **cannot be used in blade directices directly**.
 
 > Why? Raw should be as it is. Forced escaping should be escaped only, without modification.
