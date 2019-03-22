@@ -29,18 +29,18 @@ class BladeFiltersCompiler extends BladeCompiler
      */
     protected function parseFilters($value)
     {
-        if (! preg_match('/(?![^\"\'(].*[\"\')])(\|.*)/u', $value, $matches)) {
+        if (! preg_match('/(?=(?:[^\'\"\`)]*([\'\"\`])[^\'\"\`]*\1)*[^\'\"\`]*$)(\|.*)/u', $value, $matches)) {
             return $value;
         }
 
-        $filters = array_values(array_filter(array_map('trim', explode('|', $matches[0]))));
+        $filters = preg_split('/\|(?=(?:[^\'\"\`]*([\'\"\`])[^\'\"\`]*\1)*[^\'\"\`]*$)/u', $matches[0]);
 
-        if (empty($filters)) {
+        if (empty($filters = array_values(array_filter(array_map('trim', $filters))))) {
             return $value;
         }
 
         foreach ($filters as $key => $filter) {
-            $filter = explode(':', trim($filter));
+            $filter = preg_split('/:(?=(?:[^\'\"\`]*([\'\"\`])[^\'\"\`]*\1)*[^\'\"\`]*$)/u', trim($filter));
 
             $wrapped = sprintf(
                 '\Illuminate\Support\Str::%s(%s%s)',

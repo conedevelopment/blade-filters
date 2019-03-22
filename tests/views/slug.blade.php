@@ -1,1 +1,0 @@
-{{ 'Slug test' | slug }}

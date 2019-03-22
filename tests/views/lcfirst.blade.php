@@ -1,1 +1,0 @@
-{{ 'Árpamaláta' | lcfirst }}
