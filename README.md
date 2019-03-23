@@ -139,6 +139,22 @@ The package comes with a few built-in filters, also the default Laravel string m
 
 > Unlike PHP's default `ucfirst()`, this filter works with multi-byte strings as well.
 
+### Supported built-in functions
+
+- [Str::after()](https://laravel.com/docs/5.8/helpers#method-str-after)
+- [Str::before()](https://laravel.com/docs/5.8/helpers#method-str-before)
+- [Str::camel()](https://laravel.com/docs/5.8/helpers#method-str-camel)
+- [Str::finish()](https://laravel.com/docs/5.8/helpers#method-str-finish)
+- [Str::kebab()](https://laravel.com/docs/5.8/helpers#method-str-kebab)
+- [Str::limit()](https://laravel.com/docs/5.8/helpers#method-str-limit)
+- [Str::plural()](https://laravel.com/docs/5.8/helpers#method-str-plural)
+- [Str::singular()](https://laravel.com/docs/5.8/helpers#method-str-singular)
+- [Str::slug()](https://laravel.com/docs/5.8/helpers#method-str-slug)
+- [Str::snake()](https://laravel.com/docs/5.8/helpers#method-str-snake)
+- [Str::start()](https://laravel.com/docs/5.8/helpers#method-str-start)
+- [Str::studly()](https://laravel.com/docs/5.8/helpers#method-str-studly)
+- [Str::title()](https://laravel.com/docs/5.8/helpers#method-str-title)
+
 ## Create custom filters
 
 As it was mentioned before, every filter is a method that can be called through the `Illuminate\Support\Facades\Str` facade.
