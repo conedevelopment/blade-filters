@@ -199,6 +199,6 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-## Contact
+## Contribute
 
 If you found a bug or you have an idea connecting the package, feel free to open an issue.
