@@ -1,1 +1,1 @@
-{{ '|risky:string:test|' | slug }}
+{{ 'risky|string:test' | finish:'|' | start:':' }}

@@ -27,7 +27,9 @@ class BladeFiltersTest extends TestCase
     /** @test */
     public function a_risky_string_can_be_filtered()
     {
-        $this->get('/blade-filters/risky-string')->assertSee(Str::slug('|risky:string:test|'));
+        $this->get('/blade-filters/risky-string')->assertSee(
+            Str::start(Str::finish('risky|string:test', '|'), ':')
+        );
     }
 
     /** @test */
