@@ -1,6 +1,6 @@
 {
     "name": "thepinecode/blade-filters",
-    "description": "Use blade filters easily in your templates.",
+    "description": "Use filters easily in your blade templates.",
     "type": "project",
     "license": "MIT",
     "authors": [
