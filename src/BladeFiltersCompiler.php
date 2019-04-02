@@ -39,11 +39,13 @@ class BladeFiltersCompiler extends BladeCompiler
             return $value;
         }
 
+        $wrapped = '';
+
         foreach ($filters as $key => $filter) {
             $filter = preg_split('/:(?=(?:[^\'\"\`]*([\'\"\`])[^\'\"\`]*\1)*[^\'\"\`]*$)/u', trim($filter));
 
             $wrapped = sprintf(
-                '\Illuminate\Support\Str::%s(%s%s)',
+                '\Pine\BladeFilters\BladeFilters::%s(%s%s)',
                 $filter[0],
                 $key === 0 ? rtrim(str_replace($matches[0], '', $value)) : $wrapped,
                 isset($filter[1]) ? ",{$filter[1]}" : ''

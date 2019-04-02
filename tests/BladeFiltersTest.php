@@ -2,33 +2,34 @@
 
 namespace Pine\BladeFilters\Tests;
 
-use Illuminate\Support\Str;
+use Pine\BladeFilters\BladeFilters;
+use Pine\BladeFilters\Exceptions\MissingBladeFilterException;
 
 class BladeFiltersTest extends TestCase
 {
     /** @test */
     public function a_string_can_be_filtered()
     {
-        $this->get('/blade-filters/string')->assertSee(Str::slug('string test'));
+        $this->get('/blade-filters/string')->assertSee(BladeFilters::slug('string test'));
     }
 
     /** @test */
     public function a_variable_can_be_filtered()
     {
-        $this->get('/blade-filters/variable')->assertSee(Str::slug('variable test'));
+        $this->get('/blade-filters/variable')->assertSee(BladeFilters::slug('variable test'));
     }
 
     /** @test */
     public function a_function_can_be_filtered()
     {
-        $this->get('/blade-filters/function')->assertSee(Str::slug('function test'));
+        $this->get('/blade-filters/function')->assertSee(BladeFilters::slug('function test'));
     }
 
     /** @test */
     public function a_risky_string_can_be_filtered()
     {
         $this->get('/blade-filters/risky-string')->assertSee(
-            Str::start(Str::finish('risky|string:test', '|'), ':')
+            BladeFilters::start(BladeFilters::finish('risky|string:test', '|'), ':')
         );
     }
 
@@ -38,7 +39,18 @@ class BladeFiltersTest extends TestCase
         $text = '   long and Badly Formatted text....way too long';
 
         $this->get('/blade-filters/chain')->assertSee(
-            Str::limit(Str::title(Str::trim($text)), 10)
+            BladeFilters::limit(BladeFilters::title(BladeFilters::trim($text)), 10)
         );
+    }
+
+    /**
+     * @test
+     * @group test
+     */
+    public function throws_exception_when_missing_filter()
+    {
+        $result = $this->get('/blade-filters/missing-filter');
+        $this->assertInstanceOf(MissingBladeFilterException::class, $result->exception->getPrevious());
+        $this->assertEquals($result->exception->getPrevious()->getMessage(), 'this_filter_does_not_exist');
     }
 }
