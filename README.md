@@ -80,7 +80,7 @@ Filters can be used **only with regular** echos. Also, filters **cannot be used 
 
 ### About the filters
 
-Filters are string functions, that are defined in the `Illuminate\Support\Facades\Str` facade.
+Filters are string functions, that are defined in the `Pine\BladeFilters\BladeFilters` facade.
 It has several reasons, that are discussed in the [Create custom filters](#create-custom-filters) section.
 
 ### The available filters
@@ -139,7 +139,7 @@ The package comes with a few built-in filters, also the default Laravel string m
 
 > Unlike PHP's default `ucfirst()`, this filter works with multi-byte strings as well.
 
-### Supported built-in functions
+### Supported built-in Str functions
 
 - [Str::after()](https://laravel.com/docs/5.8/helpers#method-str-after)
 - [Str::before()](https://laravel.com/docs/5.8/helpers#method-str-before)
@@ -157,10 +157,10 @@ The package comes with a few built-in filters, also the default Laravel string m
 
 ## Create custom filters
 
-As it was mentioned before, every filter is a method that can be called through the `Illuminate\Support\Facades\Str` facade.
+As it was mentioned before, every filter is a method that can be called through the `Pine\BladeFilters\BladeFilters` facade.
 It has several reasons why is this approach better, but let's take the most important ones:
 
-- It's easy to define custom filters by extending the facade with the `Str::macro()`,
+- It's easy to define custom filters by extending the facade with the `BladeFilters::macro()`,
 - No extra files, autoloading or class mapping, it's enough to use any service provider to define filters,
 - By default Laravel provides a bunch of handy methods that we can use as filters.
 
@@ -175,7 +175,7 @@ Also, sometimes it happens with Laravel's string functions. It's important that 
 For example:
 
 ```php
-Str::macro('filterName', function ($value, $param1 = 'default', $param2 = null) {
+BladeFilters::macro('filterName', function ($value, $param1 = 'default', $param2 = null) {
     return ...;
 });
 
@@ -192,7 +192,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Str::macro('substr', function ($value, $start, $length = null) {
+        BladeFilters::macro('substr', function ($value, $start, $length = null) {
             return mb_substr($value, $start, $length);
         });
     }
