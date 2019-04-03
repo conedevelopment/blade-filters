@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Pine\BladeFilters;
 
 use Illuminate\Support\Str;
@@ -14,29 +13,33 @@ class BladeFilters
     }
 
     /**
-     * @param $method
-     * @param $parameters
+     * Dynamically handle calls to the class.
+     *
+     * @param  string  $method
+     * @param  array  $parameters
      * @return mixed
-     * @throws MissingBladeFilterException
+     *
+     * @throws \Pine\BladeFilters\Exceptions\MissingBladeFilterException
      */
     public static function __callStatic($method, $parameters)
     {
         if (static::hasMacro($method)) {
             return static::__baseCallStatic($method, $parameters);
-        }
-        if (method_exists(Str::class, $method)) {
+        } elseif (method_exists(Str::class, $method)) {
+            return forward_static_call_array([Str::class, $method], $parameters);
+        } elseif (Str::hasMacro($method)) {
             return forward_static_call_array([Str::class, $method], $parameters);
         }
-        if(Str::hasMacro($method)){
-            return forward_static_call_array([Str::class, $method], $parameters);
-        }
+
         throw new MissingBladeFilterException($method);
     }
 
     /**
-     * @param $value
-     * @param string $currency
-     * @param string $side
+     * Format the string as currency.
+     *
+     * @param  string  $value
+     * @param  string  $currency
+     * @param  string  $side
      * @return string
      */
     public static function currency($value, $currency = '$', $side = 'left')
@@ -45,9 +48,11 @@ class BladeFilters
     }
 
     /**
-     * @param $value
-     * @param string $format
-     * @return false|string
+     * Format the string as date.
+     *
+     * @param  string  $value
+     * @param  string  $format
+     * @return string
      */
     public static function date($value, $format = 'Y-m-d')
     {
@@ -55,7 +60,9 @@ class BladeFilters
     }
 
     /**
-     * @param $value
+    * Trim the string.
+     *
+     * @param  string  $value
      * @return string
      */
     public static function trim($value)
@@ -64,10 +71,12 @@ class BladeFilters
     }
 
     /**
-     * @param $value
-     * @param $start
-     * @param null $length
-     * @return bool|string
+     * Slice the string.
+     *
+     * @param  string  $value
+     * @param  int  $start
+     * @param  int|null  $length
+     * @return string
      */
     public static function substr($value, $start, $length = null)
     {
@@ -75,7 +84,9 @@ class BladeFilters
     }
 
     /**
-     * @param $value
+     * Transform the first letter to uppercase.
+     *
+     * @param  string  $value
      * @return string
      */
     public static function ucfirst($value)
@@ -84,7 +95,9 @@ class BladeFilters
     }
 
     /**
-     * @param $value
+     * Transform the first letter to lowercase.
+     *
+     * @param  string  $value
      * @return string
      */
     public static function lcfirst($value)
@@ -93,7 +106,9 @@ class BladeFilters
     }
 
     /**
-     * @param $value
+     * Reverse the string.
+     *
+     * @param  string  $value
      * @return string
      */
     public static function reverse($value)

@@ -43,14 +43,13 @@ class BladeFiltersTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     * @group test
-     */
-    public function throws_exception_when_missing_filter()
+    /** @test */
+    public function it_throws_exception_when_missing_filter()
     {
         $result = $this->get('/blade-filters/missing-filter');
+
         $this->assertInstanceOf(MissingBladeFilterException::class, $result->exception->getPrevious());
+
         $this->assertEquals($result->exception->getPrevious()->getMessage(), 'this_filter_does_not_exist');
     }
 }
