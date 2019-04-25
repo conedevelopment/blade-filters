@@ -39,12 +39,12 @@ class BladeFilters
      *
      * @param  string  $value
      * @param  string  $currency
-     * @param  string  $side
+     * @param  bool  $left
      * @return string
      */
-    public static function currency($value, $currency = '$', $side = 'left')
+    public static function currency($value, $currency = '$', $left = true)
     {
-        return $side === 'left' ? "{$currency} {$value}" : "{$value} {$currency}";
+        return $left ? "{$currency} {$value}" : "{$value} {$currency}";
     }
 
     /**

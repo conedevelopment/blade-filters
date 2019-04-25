@@ -92,8 +92,10 @@ The package comes with a few built-in filters, also the default Laravel string m
 ```php
 {{ '17.99' | currency:'CHF' }} // CHF 17.99
 
-{{ '17.99' | currency:'€','right' }} // 17.99 €
+{{ '17.99' | currency:'€',false }} // 17.99 €
 ```
+
+> Passing `false` as the second parameter will align the symbol to the right.
 
 #### Date
 
