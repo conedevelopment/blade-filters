@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.0 (2019-05-27)
+### Added
+- Handle bitwise operators
+### Changed
+- Extend the compiler intstead of replacing it
+
 ## v0.2.1 (2019-04-25)
 ### Fixed
 - Make regexp non-greedy where it's necessary ([#4](https://github.com/thepinecode/blade-filters/issues/4))
