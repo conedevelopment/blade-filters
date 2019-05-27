@@ -31,11 +31,13 @@ Go to the `config/app.php` file and add the `Pine\BladeFilters\BladeFiltersServi
 You can use the filters in any of your blade templates.
 
 #### Regular usage:
+
 ```php
 {{ 'john' | ucfirst }} // John
 ```
 
 #### Chained usage:
+
 ```php
 {{ 'john' | ucfirst | substr:0,1 }} // J
 
@@ -43,6 +45,7 @@ You can use the filters in any of your blade templates.
 ```
 
 #### Passing non-static values:
+
 ```php
 {{ $name | ucfirst | substr:0,1 }}
 
@@ -54,6 +57,7 @@ You can use the filters in any of your blade templates.
 ```
 
 #### Passing variables as filter parameters:
+
 ```php
 $currency = 'HUF'
 
@@ -61,6 +65,7 @@ $currency = 'HUF'
 ```
 
 #### Built-in Laravel functionality:
+
 ```php
 {{ 'This is a title' | slug }} // this-is-a-title
 
@@ -69,12 +74,18 @@ $currency = 'HUF'
 {{ 'foo_bar' | studly }} // FooBar
 ```
 
-### Limitation
+### Limitations
 
 Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{ }}` and escaped (legacy) – `{{{ }}}`.
 Filters can be used **only with regular** echos. Also, filters **cannot be used in blade directices directly**.
 
 > Why? Raw should be as it is. Forced escaping should be escaped only, without modification.
+
+Bitwise operators are allowed, but they must be wrapped in parentheses.
+
+```php
+{{ ('a' | 'b') | upper }} // C
+```
 
 ## The Filters
 

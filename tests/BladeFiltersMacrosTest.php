@@ -11,7 +11,7 @@ class BladeFiltersMacrosTest extends TestCase
     public function currency_test()
     {
         $left = BladeFilters::currency('12.99', 'HUF');
-        $right = BladeFilters::currency('12.99', 'HUF', 'right');
+        $right = BladeFilters::currency('12.99', 'HUF', false);
 
         $this->assertEquals('HUF 12.99', $left);
         $this->assertEquals('12.99 HUF', $right);

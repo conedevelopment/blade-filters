@@ -2,27 +2,19 @@
 
 namespace Pine\BladeFilters;
 
-use Illuminate\View\ViewServiceProvider;
-use Illuminate\View\Engines\CompilerEngine;
+use Illuminate\Support\ServiceProvider;
 
-class BladeFiltersServiceProvider extends ViewServiceProvider
+class BladeFiltersServiceProvider extends ServiceProvider
 {
     /**
-     * Register the Blade engine implementation.
+     * Bootstrap any application services.
      *
-     * @param  \Illuminate\View\Engines\EngineResolver  $resolver
      * @return void
      */
-    public function registerBladeEngine($resolver)
+    public function boot()
     {
-        $this->app->singleton('blade.compiler', function () {
-            return new BladeFiltersCompiler(
-                $this->app['files'], $this->app['config']['view.compiled']
-            );
-        });
-
-        $resolver->register('blade', function () {
-            return new CompilerEngine($this->app['blade.compiler']);
+        $this->app['blade.compiler']->extend(function ($view) {
+            return $this->app[BladeFiltersCompiler::class]->compile($view);
         });
     }
 }

@@ -2,21 +2,17 @@
 
 namespace Pine\BladeFilters;
 
-use Illuminate\View\Compilers\BladeCompiler;
-
-class BladeFiltersCompiler extends BladeCompiler
+class BladeFiltersCompiler
 {
     /**
-     * Compile the "regular" echo statements.
+     * Compile the echo statements.
      *
      * @param  string  $value
      * @return string
      */
-    protected function compileRegularEchos($value)
+    public function compile($value)
     {
-        $value = parent::compileRegularEchos($value);
-
-        return preg_replace_callback('/(?<=<\?php\secho\se\()(.*?)(?=\);\s\?>)/u', function ($matches) {
+        return preg_replace_callback('/(?<={{)(.*?)(?=}}+$)/mu', function ($matches) {
             return $this->parseFilters($matches[0]);
         }, $value);
     }
@@ -29,7 +25,7 @@ class BladeFiltersCompiler extends BladeCompiler
      */
     protected function parseFilters($value)
     {
-        if (! preg_match('/(?=(?:[^\'\"\`)]*([\'\"\`])[^\'\"\`]*\1)*[^\'\"\`]*$)(\|.*)/u', $value, $matches)) {
+        if (! preg_match('/(?=(?:[^\'\"\`)]*([\'\"\`])[^\'\"\`]*\1)*[^\'\"\`)]*$)(\|.*)/u', $value, $matches)) {
             return $value;
         }
 
@@ -47,7 +43,7 @@ class BladeFiltersCompiler extends BladeCompiler
             $wrapped = sprintf(
                 '\Pine\BladeFilters\BladeFilters::%s(%s%s)',
                 $filter[0],
-                $key === 0 ? rtrim(str_replace($matches[0], '', $value)) : $wrapped,
+                $key === 0 ? trim(str_replace($matches[0], '', $value)) : $wrapped,
                 isset($filter[1]) ? ",{$filter[1]}" : ''
             );
         }

@@ -34,6 +34,14 @@ class BladeFiltersTest extends TestCase
     }
 
     /** @test */
+    public function a_bitwise_operator_string_can_be_filtered()
+    {
+        $result = BladeFilters::upper('a' | 'b');
+
+        $this->get('/blade-filters/bitwise')->assertSee($result);
+    }
+
+    /** @test */
     public function a_string_can_be_chain_filtered()
     {
         $text = '   long and Badly Formatted text....way too long';

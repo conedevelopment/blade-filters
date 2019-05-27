@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        View::addNamespace('blade-filters', __DIR__.'/views');
+        View::addNamespace('blade-filters', __DIR__ . '/views');
 
         Route::get('/blade-filters/{filter}', function ($filter) {
             return view("blade-filters::{$filter}");
