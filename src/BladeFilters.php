@@ -60,7 +60,7 @@ class BladeFilters
     }
 
     /**
-    * Trim the string.
+     * Trim the string.
      *
      * @param  string  $value
      * @return string

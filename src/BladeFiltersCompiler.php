@@ -18,7 +18,7 @@ class BladeFiltersCompiler
     }
 
     /**
-     * Parse the blade filters and pass them to the echo.
+     * Parse the blade filters.
      *
      * @param  string  $value
      * @return string

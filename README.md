@@ -76,12 +76,17 @@ $currency = 'HUF'
 
 ### Limitations
 
+#### Echos
+
 Laravel supports three types of echos. Raw – `{!!  !!}`, regular – `{{ }}` and escaped (legacy) – `{{{ }}}`.
 Filters can be used **only with regular** echos. Also, filters **cannot be used in blade directices directly**.
 
 > Why? Raw should be as it is. Forced escaping should be escaped only, without modification.
 
-Bitwise operators are allowed, but they must be wrapped in parentheses.
+#### Bitwise operators
+
+Bitwise operators are allowed, but they must be wrapped in parentheses,
+since they are using the same "pipe operator".
 
 ```php
 {{ ('a' | 'b') | upper }} // C
