@@ -202,8 +202,8 @@ BladeFilters::macro('filterName', function ($value, $param1 = 'default', $param2
 
 ### Defining custom filters
 
-Since the filters are only methods that are defined in the `Str` facade, to create filters, you need to do to create a macro
-in a service provider's `boot()` method.
+Since the filters are only methods that are defined in the `Str` facade and the `BladeFilters` class, to create filters, 
+you need to do to create a macro in a service provider's `boot()` method.
 
 ```php
 class AppServiceProvider extends ServiceProvider
