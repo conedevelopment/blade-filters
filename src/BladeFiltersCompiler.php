@@ -12,7 +12,7 @@ class BladeFiltersCompiler
      */
     public function compile($value)
     {
-        return preg_replace_callback('/(?<={{)(.*?)(?=}}+$)/mu', function ($matches) {
+        return preg_replace_callback('/(?<={{)(.*?)(?=}})/mu', function ($matches) {
             return $this->parseFilters($matches[0]);
         }, $value);
     }

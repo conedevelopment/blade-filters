@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.1 (2019-06-08)
+### Fixed
+- Remove `+$` from pattern
+
 ## v0.3.0 (2019-05-27)
 ### Added
 - Handle bitwise operators

@@ -52,6 +52,17 @@ class BladeFiltersTest extends TestCase
     }
 
     /** @test */
+    public function a_string_can_be_wrapped_and_multiline()
+    {
+        $this->get('/blade-filters/wrapped')
+            ->assertSee(
+                '<h1>' . BladeFilters::title('this is a title') . '</h1>'
+            )->assertSee(
+                '<a href="' . BladeFilters::slug('this is a link') . '">Link</a>'
+            );
+    }
+
+    /** @test */
     public function it_throws_exception_when_missing_filter()
     {
         $result = $this->get('/blade-filters/missing-filter');
