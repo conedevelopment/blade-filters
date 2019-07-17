@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.2 (2019-07-17)
+### Changed
+- Change PHP requirement from `7.1` to `7.0`.
+
 ## v0.3.1 (2019-06-08)
 ### Fixed
 - Remove `+$` from pattern
