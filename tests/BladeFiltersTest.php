@@ -71,4 +71,11 @@ class BladeFiltersTest extends TestCase
 
         $this->assertEquals($result->exception->getPrevious()->getMessage(), 'this_filter_does_not_exist');
     }
+
+    /** @test */
+    public function at_curly_brace_js_syntax_ignored()
+    {
+        $result = $this->get('/blade-filters/ignore-js')
+            ->assertSee('<h1>{{ val.title | title }}</h1>');
+    }
 }
