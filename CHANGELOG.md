@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.0 (2019-09-24)
+### Changed
+- Ignore tags the contain JavaScript ([#8](https://github.com/thepinecode/blade-filters/pull/8))
+
 ## v0.3.2 (2019-07-17)
 ### Changed
 - Change PHP requirement from `7.1` to `7.0`.
