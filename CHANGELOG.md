@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.1 (2019-12-02)
+### Fixed
+- Fix compiler regex
+
 ## v0.4.0 (2019-09-24)
 ### Changed
 - Ignore tags that contain JavaScript ([#8](https://github.com/thepinecode/blade-filters/pull/8))
