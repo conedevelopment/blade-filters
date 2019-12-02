@@ -2,7 +2,6 @@
 
 namespace Pine\BladeFilters\Tests;
 
-use Illuminate\Support\Str;
 use Pine\BladeFilters\BladeFilters;
 
 class BladeFiltersMacrosTest extends TestCase

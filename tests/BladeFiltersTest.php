@@ -75,7 +75,7 @@ class BladeFiltersTest extends TestCase
     /** @test */
     public function at_curly_brace_js_syntax_ignored()
     {
-        $result = $this->get('/blade-filters/ignore-js')
+        $this->get('/blade-filters/ignore-js')
             ->assertSee('<h1>{{ val.title | title }}</h1>');
     }
 }
