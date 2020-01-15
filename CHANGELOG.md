@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.5.1 (2020-01-15)
+### Changed
+- Upgrade testbench version
+- Update license date
+
 ## v0.4.1 (2019-12-02)
 ### Fixed
 - Fix compiler regex
