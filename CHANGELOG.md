@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.5.1 (2020-01-15)
+## v0.5.0 (2020-01-15)
 ### Changed
 - Upgrade testbench version
 - Update license date
