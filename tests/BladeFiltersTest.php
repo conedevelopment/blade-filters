@@ -56,9 +56,9 @@ class BladeFiltersTest extends TestCase
     {
         $this->get('/blade-filters/wrapped')
             ->assertSee(
-                '<h1>' . BladeFilters::title('this is a title') . '</h1>'
+                '<h1>' . BladeFilters::title('this is a title') . '</h1>', false
             )->assertSee(
-                '<a href="' . BladeFilters::slug('this is a link') . '">Link</a>'
+                '<a href="' . BladeFilters::slug('this is a link') . '">Link</a>', false
             );
     }
 
@@ -76,6 +76,6 @@ class BladeFiltersTest extends TestCase
     public function at_curly_brace_js_syntax_ignored()
     {
         $this->get('/blade-filters/ignore-js')
-            ->assertSee('<h1>{{ val.title | title }}</h1>');
+            ->assertSee('<h1>{{ val.title | title }}</h1>', false);
     }
 }
