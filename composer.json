@@ -20,11 +20,11 @@
         }
     },
     "require": {
-        "php" : "^7.2.5",
-        "laravel/framework": "^6.0|^7.0"
+        "php": "^7.2.5",
+        "illuminate/support": "^6.0 || ^7.0"
     },
     "require-dev": {
-        "orchestra/testbench":"~5.0.0"
+        "orchestra/testbench": "~5.0.0"
     },
     "extra": {
         "laravel": {
@@ -36,6 +36,6 @@
             "dev-master": "1.0-dev"
         }
     },
-    "minimum-stability" : "dev",
-    "prefer-stable" : true
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
