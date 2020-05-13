@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.6.0 (2020-05-13)
+### Changed
+- Update composer dependencies ([#11](https://github.com/thepinecode/blade-filters/pull/11))
+
 ## v0.5.0 (2020-01-15)
 ### Changed
 - Upgrade testbench version

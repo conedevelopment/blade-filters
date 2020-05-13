@@ -2,13 +2,14 @@
 
 namespace Pine\BladeFilters\Tests;
 
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
-use Orchestra\Testbench\TestCase as BaseTestCase;
-use Pine\BladeFilters\BladeFiltersServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
+    use CreatesApplication;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -18,10 +19,5 @@ abstract class TestCase extends BaseTestCase
         Route::get('/blade-filters/{filter}', function ($filter) {
             return view("blade-filters::{$filter}");
         });
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [BladeFiltersServiceProvider::class];
     }
 }

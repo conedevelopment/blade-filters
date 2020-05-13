@@ -24,7 +24,8 @@
         "illuminate/support": "^6.0 || ^7.0"
     },
     "require-dev": {
-        "orchestra/testbench": "~5.0.0"
+        "laravel/laravel": "dev-master",
+        "phpunit/phpunit": "^9.0"
     },
     "extra": {
         "laravel": {
