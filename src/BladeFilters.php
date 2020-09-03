@@ -5,6 +5,7 @@ namespace Pine\BladeFilters;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Pine\BladeFilters\Exceptions\MissingBladeFilterException;
+use Carbon\Carbon;
 
 class BladeFilters
 {
@@ -114,5 +115,31 @@ class BladeFilters
     public static function reverse($value)
     {
         return strrev($value);
+    }
+    
+    /**
+     *  get difference between a datetime and current datetime.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function diffFromNow($value)
+    {
+        $diff = Carbon::now()->diffInSeconds($value);
+        if ($diff < 60) {
+            return round($diff) . 's ago';
+        }
+        
+        $diff = $diff / 60;
+        if ($diff < 60) {
+            return round($diff) . 'min ago';
+        }
+        
+        $diff = $diff / 60;
+        if ($diff < 60) {
+            return round($diff) . 'hours ago';
+        }
+           
+        return round($diff / 24) . ' days ago';
     }
 }
