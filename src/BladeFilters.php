@@ -125,21 +125,31 @@ class BladeFilters
      */
     public static function diffFromNow($value)
     {
-        $diff = Carbon::now()->diffInSeconds($value);
-        if ($diff < 60) {
-            return round($diff) . 's ago';
-        }
-        
-        $diff = $diff / 60;
-        if ($diff < 60) {
-            return round($diff) . 'min ago';
-        }
-        
-        $diff = $diff / 60;
-        if ($diff < 60) {
-            return round($diff) . 'hours ago';
-        }
-           
-        return round($diff / 24) . ' days ago';
+            $diff = Carbon::now()->diffInSeconds($value);
+            if ($diff < 60) {
+                return round($diff) . 's ago';
+            }
+
+            $diff = $diff / 60;
+            if ($diff < 60) {
+                return round($diff) . 'min ago';
+            }
+
+            $diff = $diff / 60;
+            if ($diff < 24) {
+                return round($diff) . 'hours ago';
+            }
+
+            $diff = $diff / 24;
+            if ($diff < 30) {
+                return round($diff) . 'days ago';
+            }
+
+            $diff = $diff / 30;
+            if ($diff < 12) {
+                return round($diff) . 'months ago';
+            }
+
+            return round($diff / 12) . ' years ago';
     }
 }
