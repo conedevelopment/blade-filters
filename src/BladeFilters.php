@@ -91,7 +91,7 @@ class BladeFilters
      */
     public static function ucfirst($value)
     {
-        return mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+        return mb_strtoupper(mb_substr($value, 0, 1)).mb_substr($value, 1);
     }
 
     /**
@@ -102,7 +102,7 @@ class BladeFilters
      */
     public static function lcfirst($value)
     {
-        return mb_strtolower(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+        return mb_strtolower(mb_substr($value, 0, 1)).mb_substr($value, 1);
     }
 
     /**

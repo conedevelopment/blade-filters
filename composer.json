@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Gergő D. Nagy",
-            "email": "hello@iamgergo.com"
+            "name": "Cone Development",
+            "email": "hello@conedevelopment.com"
         }
     ],
     "autoload": {
@@ -21,7 +21,7 @@
     },
     "require": {
         "php": "^7.2.5",
-        "illuminate/support": "^6.0 || ^7.0"
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0"
     },
     "require-dev": {
         "laravel/laravel": "dev-master",
