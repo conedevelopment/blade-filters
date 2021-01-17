@@ -7,7 +7,7 @@ If you have any question how the package works, we suggest to read this post:
 
 ## Getting started
 
-You can install the package with composer, running the `composer require thepinecode/blade-filters` command.
+You can install the package with composer, running the `composer require conedevelopment/blade-filters` command.
 
 ## Using the filters
 
