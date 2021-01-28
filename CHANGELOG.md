@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.8.0 (2021-01-28)
+### Added
+- PHP 8 compatibility
+
 ## v0.7.0 (2020-09-16)
 ### Added
 - Laravel 8 compatibility
